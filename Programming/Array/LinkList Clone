@@ -1,0 +1,100 @@
+class Node
+{
+	int data;
+	Node next, random;
+	Node(int x)
+	{
+		data = x;
+		next = random;
+	}
+}
+
+class List
+{
+	void print(Node start)
+	{
+		Node* ptr = start;
+		while(ptr)
+		{
+			("Data :"+ptr.data+" Random :"+prt.random.data);
+			prt = ptr.next; 
+		}
+	}
+
+	int size(Node start)
+	{
+		Node* curr = start;
+		count =0;
+		while(curr)
+		{
+			count++;
+			curr = curr.next;
+		}
+		return count;
+	}
+
+	Node clone(Node* start)
+	{
+		int s = size(start);
+		Node newList = null;
+		int nextarr[] = new int[s];
+		int arbarrr[]= 	new int[s];
+		Node* curr = start;
+		for(int i=0; i<s; i++)
+		{
+			nextarr[i] = curr.next; 
+			arbarr[i]  = curr.random;
+			curr = curr.next;
+		}
+		
+		curr = start;
+		
+		Node lastNode = null;
+		
+		//creating copy with next ;
+		while(curr != NULL )
+		{
+			Node currNext = NULL;
+			Node temp;
+			if(i == 0)
+			{
+				temp = new Node(curr.data);
+				newList = temp;
+			}
+			else
+			{
+				temp = new Node(curr.data);
+			}
+			
+			temp.data= curr.data;
+			temp.next = lastNode;
+			temp.random = curr;
+			currNext = curr.next;
+			curr.next = temp;
+			
+			LastNode = temp;
+			curr = currNext;
+		}
+		
+		//Adding random Node pointer to copy 
+		
+			curr = newList; 
+		
+		while( curr != Null)
+		{
+			curr.random = curr.random.random.next;
+			curr = curr.next;
+		}
+		
+		//restore next of original list
+
+		int i = 0 ;
+		curr = start;
+		while(i < s)
+		{
+			curr.next = nextarr[i];
+			curr = curr.next;
+		}
+		return newlist;
+	}
+}
