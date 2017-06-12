@@ -1,0 +1,83 @@
+class Node
+{
+	public String item;
+	public Node next;
+	public Node random;
+	public Node()
+	{
+	}
+	public Node(String x)
+	{
+		item = x;
+		next = random = null;
+	}
+} 
+
+class List
+{
+	void print(Node start)
+	{
+		Node ptr = start;
+		while(ptr)
+		{
+			("Data :"+ptr.data+" Random :"+ptr.random.data);
+			ptr = ptr.next; 
+		}
+	}
+
+	int size(Node start)
+	{
+		Node* curr = start;
+		count =0;
+		while(curr)
+		{
+			count++;
+			curr = curr.next;
+		}
+		return count;
+	}
+	
+	public static Node cloneLinkedStructure(Node head)
+	{
+		//make holes after every original node
+			Node curr = head;
+			while(curr != null)
+			{
+				Node currNext = p.next;
+				Node hole = new Node(".");
+				p.next = hole;
+				hole.next = currNext;
+				curr = currNext;
+			}
+				
+				Node fakeHead = new Node(); // fake new head
+				Node q = fakeHead;
+				Node p = head;
+				while (p != null) {
+				// build the new linked structure
+				Node oldq = q;
+				q = new Node();
+				q.item = p.item;
+				oldq.next = q;
+				q.random = p.random.next; // link to a hole
+
+				Node hole = p.next;
+				hole.random = q; // use link RANDOM as a backward link to new node
+
+				p = hole.next;
+    }
+    q.next = null;
+
+    Node newHead = fakeHead.next; // throw fake head
+    // build random links for the new linked structure
+    for (q = newHead; q != null; q = q.next)
+        q.random = q.random.random;
+
+    // delete holes to restore original linked structure
+    for (p = head; p != null; p = p.next)
+        p.next = p.next.next;
+
+			
+	}
+	
+}
