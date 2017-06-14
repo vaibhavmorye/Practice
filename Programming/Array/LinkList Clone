@@ -1,3 +1,5 @@
+
+import java.util.*;
 class Node
 {
 	int data;
@@ -11,90 +13,91 @@ class Node
 
 class List
 {
-	void print(Node start)
-	{
-		Node* ptr = start;
-		while(ptr)
-		{
-			("Data :"+ptr.data+" Random :"+prt.random.data);
-			prt = ptr.next; 
-		}
-	}
-
-	int size(Node start)
-	{
-		Node* curr = start;
-		count =0;
-		while(curr)
-		{
-			count++;
-			curr = curr.next;
-		}
-		return count;
-	}
-
-	Node clone(Node* start)
-	{
-		int s = size(start);
-		Node newList = null;
-		int nextarr[] = new int[s];
-		int arbarrr[]= 	new int[s];
-		Node* curr = start;
-		for(int i=0; i<s; i++)
-		{
-			nextarr[i] = curr.next; 
-			arbarr[i]  = curr.random;
-			curr = curr.next;
-		}
-		
-		curr = start;
-		
-		Node lastNode = null;
-		
-		//creating copy with next ;
-		while(curr != NULL )
-		{
-			Node currNext = NULL;
-			Node temp;
-			if(i == 0)
-			{
-				temp = new Node(curr.data);
-				newList = temp;
-			}
-			else
-			{
-				temp = new Node(curr.data);
-			}
+    	public static void print(Node start)
+    	{
+      		Node ptr = start;
+      		while(ptr != null)
+      		{
+      			System.out.println("Data :"+ptr.data+" Random :"+ptr.random.data);
+      			ptr = ptr.next; 
+      		}
+    	}
+    
+    	public static void clone(Node start)
+    	{
+      		Node ogList = start;
+      		Node cpList = null;
+      		
+      		while(ogList != null)
+      		{
+      			Node temp = new Node(ogList.data);
+      			temp.next = ogList.next;
+				    //System.out.println(ogList.next);
+				    //System.out.println(temp.next);
+      			ogList.next = temp;
+				    //System.out.println("Data :"+ogList.data+" Random :"+ogList.random.data);
+			    //System.out.println("Data :"+temp.data+" Random :"+temp.random);
+      			ogList = temp.next;
+      		}
+      		ogList = start;
 			
-			temp.data= curr.data;
-			temp.next = lastNode;
-			temp.random = curr;
-			currNext = curr.next;
-			curr.next = temp;
-			
-			LastNode = temp;
-			curr = currNext;
-		}
-		
-		//Adding random Node pointer to copy 
-		
-			curr = newList; 
-		
-		while( curr != Null)
-		{
-			curr.random = curr.random.random.next;
-			curr = curr.next;
-		}
-		
-		//restore next of original list
-
-		int i = 0 ;
-		curr = start;
-		while(i < s)
-		{
-			curr.next = nextarr[i];
-			curr = curr.next;
-		}
-		return newlist;
-	}
+		      	//List.print(start);
+      			//System.out.println("Data :"+ogList.data+" Random :"+ogList.random.data);
+			while(ogList != null)
+			{
+				cpList = ogList.next;
+				cpList.random = ogList.random.next;
+				ogList = ogList.next.next;
+			}	
+			Node original = start, copy = start.next;
+ 
+    // save the start of copied linked list
+    Node temp = copy;
+ 
+    // now separate the original list and copied list
+    while (original != null && copy != null)
+    {
+        original.next =
+         original.next != null? original.next.next : original.next;
+ 
+        copy.next = copy.next != null?copy.next.next:copy.next;
+        original = original.next;
+        copy = copy.next;
+    }
+ 
+			List.print(start);
+			System.out.println(" //");
+			List.print(temp);
+      		//return cpList;
+    	}
+	
+}
+public class Main
+{
+  public static void main(String[] args)
+  {
+      Node start = new Node(1);
+      start.next = new Node(2);
+      start.next.next = new Node(3);
+      start.next.next.next = new Node(4);
+      start.next.next.next.next = new Node(5);
+  
+      // 1's random points to 3
+      start.random = start.next.next;
+  
+      // 2's random points to 1
+      start.next.random = start;
+  
+      // 3's and 4's random points to 5
+      start.next.next.random =
+                      start.next.next.next.next;
+      start.next.next.next.random =
+                      start.next.next.next.next;
+  
+      // 5's random points to 2
+      start.next.next.next.next.random = start.next;                             
+	 Node copy = List.clone(start);
+	 List.print(copy);
+	 
+  }
 }
