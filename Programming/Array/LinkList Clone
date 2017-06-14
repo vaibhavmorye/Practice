@@ -1,4 +1,3 @@
-
 import java.util.*;
 class Node
 {
@@ -23,7 +22,7 @@ class List
       		}
     	}
     
-    	public static void clone(Node start)
+    	public static Node clone(Node start)
     	{
       		Node ogList = start;
       		Node cpList = null;
@@ -49,26 +48,27 @@ class List
 				cpList.random = ogList.random.next;
 				ogList = ogList.next.next;
 			}	
-			Node original = start, copy = start.next;
+		   ogList = start;
+		   cpList = start.next;
  
     // save the start of copied linked list
-    Node temp = copy;
+    Node temp = cpList;
  
     // now separate the original list and copied list
-    while (original != null && copy != null)
+    while (ogList != null && cpList != null)
     {
-        original.next =
-         original.next != null? original.next.next : original.next;
+        ogList.next =
+         ogList.next != null? ogList.next.next : ogList.next;
  
-        copy.next = copy.next != null?copy.next.next:copy.next;
-        original = original.next;
-        copy = copy.next;
+        cpList.next = cpList.next != null?cpList.next.next:cpList.next;
+        ogList = ogList.next;
+        cpList = cpList.next;
     }
  
-			List.print(start);
+			//List.print(start);
 			System.out.println(" //");
-			List.print(temp);
-      		//return cpList;
+			//List.print(temp);
+      	return temp;
     	}
 	
 }
@@ -97,6 +97,7 @@ public class Main
       // 5's random points to 2
       start.next.next.next.next.random = start.next;                             
 	 Node copy = List.clone(start);
+	 
 	 List.print(copy);
 	 
   }
