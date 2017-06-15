@@ -1,0 +1,130 @@
+aaabbbc 3 -> c
+abbbcddfg 1 ->bbbdd
+abcd 2 -> abcd 
+abcd 1 -> '' 
+aaaab 3 -> aaaab
+
+import java.lang.*;
+class Main {
+    public static String deleteme(String stk, int l) {
+        StringBuilder str = new StringBuilder(stk);
+        int i =0;
+        int j =0;
+        int len = str.length();
+        String del= "";
+        while(i < len )
+        {
+		System.out.println(i);
+            int count =0;
+            for( j= i; j < len; j++)
+            {
+                if(str.charAt(i) == str.charAt(j))
+                {
+					System.out.println(str.charAt(i));
+					System.out.println(str.charAt(i));
+					System.out.println("--");
+                    count++;
+                }
+                else
+                {
+                    i = j;
+                    break;
+                }
+            }
+            if(count == l)
+			{
+			System.out.println("--");
+			del+=str.charAt(i);
+			}
+                
+			if(i== len-1)
+				break;
+        }
+        i =0;
+        j=0;
+        int ken = del.length();
+        while(i < len && j < ken)
+        {
+            if(str.charAt(i)== del.charAt(j))
+            {  
+                str.deleteCharAt(i);
+                i++;
+            }
+            else {
+                j++;
+
+            }
+        }
+        return str.toString();
+    }
+     public static void main(String[] args)
+    {
+        String str = deleteme("aaabbbc", 3);
+        System.out.println("aaabbbc, 3");
+        System.out.println(str);
+
+        str = deleteme("abbbcddfg", 1);
+        System.out.println("abbbcddfg, 1");
+        System.out.println(str);
+
+        str = deleteme("abcd", 1);
+        System.out.println("abcd, 1");
+        System.out.println(str);
+
+         str = deleteme("aaaab", 3);
+        System.out.println("aaaab, 3");
+        System.out.println(str);
+    }
+}
+
+
+   
+0
+3
+del  :bc
+aaabbbc, 3
+aaabbbc
+0
+1
+4
+5
+7
+del  :bdg
+abbbcddfg, 1
+abbbcddfg
+0
+1
+2
+del  :bcd
+abcd, 1
+abcd
+0
+del  :
+aaaab, 3
+aaaab
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
