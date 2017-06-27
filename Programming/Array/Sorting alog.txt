@@ -1,0 +1,7 @@
+Selection Sort -- done, 
+Bubble Sort  -- done, 
+Insertion Sort -- done, 
+Merge Sort, 
+Heap Sort, 
+QuickSort, 
+Radix Sort. 
