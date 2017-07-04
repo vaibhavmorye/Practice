@@ -1,0 +1,50 @@
+package String;
+
+class Node {
+	int data;
+	Node next;
+
+	public Node(int a) {
+		data = a;
+		next = null;
+	}
+}
+
+ class CirList {
+	public static Node addNode(Node tail, int d) {
+		Node temp = new Node(d);
+		temp.next = tail;
+		Node t = tail.next;
+		while (t.next != tail) {
+			t = t.next;
+		}
+		t.next = temp;
+		tail = temp;
+		return tail;
+	}
+
+	public static void printNode(Node tail) {
+		Node t = tail;
+		System.out.println(tail.data);
+		while (t.next != tail) {
+			t = t.next;
+			System.out.println(t.data);
+		}
+
+	}
+
+	public static void main(String args[]) {
+		Node tail = new Node(4);
+		tail.next = new Node(3);
+		tail.next.next = new Node(2);
+		tail.next.next.next = new Node(1);
+		tail.next.next.next.next = tail;
+
+		printNode(tail);
+		System.out.println("-------------------");
+		tail = addNode(tail, 5);
+		System.out.println("-------------------");
+		printNode(tail);
+	}
+
+}
